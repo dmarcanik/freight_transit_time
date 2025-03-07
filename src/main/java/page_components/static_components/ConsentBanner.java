@@ -23,7 +23,7 @@ public class ConsentBanner implements BaseStaticComponent {
     }
 
     public void acceptAll() {
-        clickElement(acceptAllButton, wait); // ✅ Uses BaseComponent method
+        clickElement(acceptAllButton, wait);
     }
 
     public boolean isDisplayed() {

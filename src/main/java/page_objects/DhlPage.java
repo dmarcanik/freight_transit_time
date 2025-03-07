@@ -42,13 +42,13 @@ public class DhlPage extends BasePage {
     }
 
     public DhlPage selectOriginCountry(String country) {
-        customSelect(originCountryDropdown).selectByText(country);
+        dropDown(originCountryDropdown).selectByText(country);
         return this;
     }
 
 
     public DhlPage selectDestinationCountry(String country) {
-        customSelect(destinationCountryDropdown).selectByText(country);
+        dropDown(destinationCountryDropdown).selectByText(country);
         return this;
     }
 

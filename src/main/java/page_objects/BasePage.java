@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page_components.variable_components.CustomSelect;
+import page_components.variable_components.DropDown;
 import page_components.variable_components.TextInput;
 
 import java.time.Duration;
@@ -23,9 +23,9 @@ public class BasePage {
 
 
 
-    protected CustomSelect customSelect(WebElement dropdownElement) {
+    protected DropDown dropDown(WebElement dropdownElement) {
         wait.until(ExpectedConditions.visibilityOf(dropdownElement));
-        return new CustomSelect(dropdownElement);
+        return new DropDown(dropdownElement);
     }
 
     protected TextInput textInput(WebElement textInputElement) {

@@ -3,10 +3,10 @@ package page_components.variable_components;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class CustomSelect extends BaseVariableComponent {
+public class DropDown extends BaseVariableComponent {
 
 
-    public CustomSelect(WebElement dropdown) {
+    public DropDown(WebElement dropdown) {
         super(dropdown);
     }
 
