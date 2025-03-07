@@ -4,15 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BaseVariableComponent {
+public interface BaseVariableComponent {
 
-    protected WebElement element;
 
-    public BaseVariableComponent(WebElement element) {
-        this.element = element;
-    }
-
-    public void waitForVisibility(WebDriverWait wait) {
+    default void waitForElement(WebElement element, WebDriverWait wait) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 }
