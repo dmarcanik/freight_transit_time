@@ -3,7 +3,6 @@ package page_objects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page_components.variable_components.DropDown;
 import page_components.variable_components.TextInput;
@@ -24,13 +23,11 @@ public class BasePage {
 
 
     protected DropDown dropDown(WebElement dropdownElement) {
-        wait.until(ExpectedConditions.visibilityOf(dropdownElement));
         return new DropDown(dropdownElement);
     }
 
-    protected TextInput textInput(WebElement textInputElement) {
-        wait.until(ExpectedConditions.visibilityOf(textInputElement));
-        return new TextInput(textInputElement);
+    protected TextInput textInput(WebElement inputElement) {
+        return new TextInput(inputElement);
     }
 
 
