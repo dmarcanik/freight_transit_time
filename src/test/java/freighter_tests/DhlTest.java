@@ -9,9 +9,10 @@ public class DhlTest extends BaseTest {
     @Test
     public void testNavigateToDHLPage() {
         DhlPage dhlPage = new DhlPage(driver);
-        dhlPage.navigateToDHLPage();
-        dhlPage.clickCalculateButton();
-        System.out.println("Page title: " + dhlPage.getPageTitle());
+        dhlPage.navigateToDHLPage()
+               .selectOriginCountry("Belgium")
+               .selectDestinationCountry("Sweden");
+
 
     }
 }

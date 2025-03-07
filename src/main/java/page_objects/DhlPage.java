@@ -3,14 +3,24 @@ package page_objects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import page_components.static_components.ConsentBanner;
 
 public class DhlPage extends BasePage {
+
+    private final ConsentBanner consentBanner;
+
 
     @FindBy(id = "origin-country")
     private WebElement originCountryDropdown;
 
+    @FindBy(id = "origin-postcode")
+    private WebElement originPostcodeInput;
+
     @FindBy(id = "destination-country")
     private WebElement destinationCountryDropdown;
+
+    @FindBy(id = "destination-postcode")
+    private WebElement destinationPostcodeInput;
 
     @FindBy(xpath = "//span[contains(text(), 'Calculate')]")
     private WebElement calculateButton;
@@ -19,8 +29,10 @@ public class DhlPage extends BasePage {
     // Constructor that passes the driver to BasePage
     public DhlPage(WebDriver driver) {
         super(driver);
-
+        this.consentBanner = new ConsentBanner(driver);
     }
+
+
 
     // Page actions
 
@@ -29,15 +41,20 @@ public class DhlPage extends BasePage {
         calculateButton.click();
     }
 
-    public void selectOriginCountry(String country) {
+    public DhlPage selectOriginCountry(String country) {
         customSelect(originCountryDropdown).selectByText(country);
+        return this;
     }
 
-    public void selectDestinationCountry(String country) {
+
+    public DhlPage selectDestinationCountry(String country) {
         customSelect(destinationCountryDropdown).selectByText(country);
+        return this;
     }
 
-    public void navigateToDHLPage() {
+    public DhlPage navigateToDHLPage() {
         driver.get("https://www.dhl.com/se-en/home/freight/tools/european-road-freight-transit-time-calculator.html");
+        consentBanner.acceptAll();
+        return this;
     }
 }

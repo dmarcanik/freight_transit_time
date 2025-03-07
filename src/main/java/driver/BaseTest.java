@@ -29,7 +29,6 @@ public class BaseTest {
 
         }
 
-
         this.driver.manage()
                    .window()
                    .maximize();

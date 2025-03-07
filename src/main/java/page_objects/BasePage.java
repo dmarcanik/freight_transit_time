@@ -5,13 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page_components.CustomSelect;
+import page_components.variable_components.CustomSelect;
+import page_components.variable_components.TextInput;
+
 import java.time.Duration;
 
 public class BasePage {
-
-
-
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -22,9 +21,16 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
+
+
     protected CustomSelect customSelect(WebElement dropdownElement) {
         wait.until(ExpectedConditions.visibilityOf(dropdownElement));
         return new CustomSelect(dropdownElement);
+    }
+
+    protected TextInput textInput(WebElement textInputElement) {
+        wait.until(ExpectedConditions.visibilityOf(textInputElement));
+        return new TextInput(textInputElement);
     }
 
 
