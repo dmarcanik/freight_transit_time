@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page_components.variable_components.Button;
 import page_components.variable_components.DropDown;
 import page_components.variable_components.TextInput;
 
@@ -13,7 +14,6 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    // Constructor to initialize driver
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 seconds timeout
@@ -30,9 +30,8 @@ public class BasePage {
         return new TextInput(inputElement);
     }
 
-
-
-    public String getPageTitle() {
-        return driver.getTitle();
+    protected Button button (WebElement buttonElement){
+        return new Button(buttonElement);
     }
+
 }

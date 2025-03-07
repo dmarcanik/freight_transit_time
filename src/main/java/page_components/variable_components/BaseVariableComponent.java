@@ -1,13 +1,7 @@
 package page_components.variable_components;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import page_components.BaseComponent;
 
-public interface BaseVariableComponent {
+public interface BaseVariableComponent extends BaseComponent {
 
-
-    default void waitForElement(WebElement element, WebDriverWait wait) {
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
 }
