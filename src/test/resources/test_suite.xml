@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="FreighterTestsSuite">
+    <test name="FreighterTestsNegative">
+        <packages>
+            <package name="freighter_tests"/>
+        </packages>
+    </test>
+</suite>

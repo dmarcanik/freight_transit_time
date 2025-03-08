@@ -42,9 +42,14 @@
                 <version>3.5.2</version>
                 <configuration>
                     <systemPropertyVariables>
+                        <!--suppress UnresolvedMavenProperty -->
                         <browser>${browser}</browser>
+                        <!--suppress UnresolvedMavenProperty -->
                         <testClass>${testClass}</testClass>
                     </systemPropertyVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/test_suite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
             <plugin>

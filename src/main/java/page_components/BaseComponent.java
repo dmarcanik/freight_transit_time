@@ -11,6 +11,7 @@ public interface BaseComponent {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+
     default void waitForElementToBeClickable(WebElement element, WebDriverWait wait) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -25,16 +26,11 @@ public interface BaseComponent {
         waitForElementToBeClickable(element, wait);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
         try {
-            element.click(); // Normal Selenium click
+            element.click();
         } catch (Exception e) {
             System.out.println("Normal click failed, using JavaScript click...");
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
         }
     }
 
-    default void typeText(WebElement element, String text, WebDriverWait wait) {
-        waitForElement(element, wait);
-        element.clear();
-        element.sendKeys(text);
-    }
 }

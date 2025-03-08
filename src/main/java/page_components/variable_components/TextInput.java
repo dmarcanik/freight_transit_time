@@ -9,18 +9,11 @@ public class TextInput implements BaseVariableComponent {
         this.inputField = inputField;
     }
 
-    // Method to type text into the input field
     public void typeText(String text) {
-        inputField.clear();
+        clear();
         inputField.sendKeys(text);
     }
 
-    // Method to get the current text inside the input field
-    public String getText() {
-        return inputField.getAttribute("value");
-    }
-
-    // Method to clear the input field
     public void clear() {
         inputField.clear();
     }
