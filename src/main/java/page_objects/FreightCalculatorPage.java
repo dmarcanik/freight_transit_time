@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import page_components.static_components.ConsentBanner;
 import utils.Utils;
 
@@ -27,13 +28,14 @@ public class FreightCalculatorPage extends BasePage {
     @FindBy(xpath = "//input[@id='destination-postcode']/following-sibling::*[contains(@class, 'zip-error-message')]")
     private WebElement destinationPostcodeError;
 
+    @FindBy(xpath = "//div[contains(@class,'calculator--error-message') and contains(@style, 'display: block')]")
+    private WebElement shipmentError;
+
     @FindBy(xpath = "//span[contains(text(), 'Calculate')]/parent::button")
     private WebElement calculateButton;
 
     @FindBy(xpath = "//div[contains(@class,'options-container') and contains(@style, 'display: block')]")
     private WebElement tableContainer;
-    @FindBy(xpath = "//div[contains(@class,'options-container') and contains(@style, 'display: block')]//span[text()='Edit previous step']")
-    private WebElement backToCalculator;
 
 
 
@@ -67,14 +69,27 @@ public class FreightCalculatorPage extends BasePage {
         return this;
     }
 
-    public FreightCalculatorPage verifyCalculcatorErrorMessages() {
+    public FreightCalculatorPage verifyShipmentError() {
+        wait.until(ExpectedConditions.visibilityOf(shipmentError));
+        String actualErrorMessage = Utils.erasePartOfString(Utils.getTextFromString(shipmentError.getText()), "ID");
+        verifyErrorMessage(
+                "Unfortunately the online tool is unable to retrieve data for the specified shipment. Please try again later or contact us for assistance.", actualErrorMessage);
+
+        return this;
+    }
+
+    public FreightCalculatorPage verifyPostcodeErrorMessages() {
         verifyErrorMessage(originPostcodeError, "Correct postal code (e.g. no post box)*");
         verifyErrorMessage(destinationPostcodeError, "Correct postal code (e.g. no post box)*");
         return this;
     }
 
-    public void verifyErrorMessage(WebElement element, String errorMessage) {
-        Utils.compareValues(element.getText(), errorMessage);
+    public void verifyErrorMessage(WebElement element, String expectedErrorMessage) {
+        verifyErrorMessage(expectedErrorMessage, element.getText());
+    }
+
+    public void verifyErrorMessage(String expectedError, String actualError) {
+        Assert.assertTrue(Utils.compareValues(expectedError, actualError));
     }
 
     public FreightCalculatorPage selectDestinationCountry(String country) {

@@ -12,13 +12,14 @@ import java.nio.file.Paths;
 
 public class BaseTest {
 
-    protected WebDriver driver;
 
+    protected WebDriver driver;
+//@BeforeMethod used for easier transition between test combinations when data provider is used
     @BeforeMethod
     public void setUp(ITestContext context) {
         System.out.println("Starting Test: " + context.getName());
         String browser = System.getProperty("browser");
-
+        //switch used for possible future browsers
         switch (System.getProperty("browser")
                       .toLowerCase()) {
             case "chrome":
@@ -44,11 +45,13 @@ public class BaseTest {
                                                               .toAbsolutePath());
 
         ChromeOptions options = new ChromeOptions();
+        //to fix issue with opening port on my notebook
         options.addArguments("--remote-allow-origins=*");
+        //to avoid Akamai
         options.addArguments("--disable-blink-features=AutomationControlled");
         return new ChromeDriver(options);
     }
-
+    //@BeforeMethod used for easier transition between test combinations when data provider is used
     @AfterMethod
     public void tearDown() {
         if (driver != null) {

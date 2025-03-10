@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Random;
 
 public class PostCodeStorage {
+
+    //Map which stores data - maybe CSV file or SQL database would be better for this kind of information
     private static final Map<String, List<String>> POSTAL_CODES = Map.of(
             "CZ", List.of("101 00", "104 00", "118 00", "142 00", "142 00", "153 00", "180 00",
                           "190 16", "678 01", "679 05"
@@ -22,7 +24,7 @@ public class PostCodeStorage {
             "SE", "Sweden",
             "DE", "Germany"
     );
-
+    //returns countryName according to country code
     public static String getCountryName(String countryCode) {
         String countryName = COUNTRY_NAMES.get(countryCode);
         if (countryName == null) {
@@ -31,7 +33,7 @@ public class PostCodeStorage {
         return countryName;
     }
 
-
+    //Returns random postal code according to country code
     public static String getRandomPostalCodeFromCountry(String country) {
         Random random = new Random();
         List<String> postalCodes;

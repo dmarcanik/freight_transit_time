@@ -14,7 +14,11 @@ public class FreightCalculatorNegativeTest extends BaseTest {
                              .selectOriginCountry(PostCodeStorage.getCountryName("CZ"))
                              .selectDestinationCountry(PostCodeStorage.getCountryName("SE"))
                              .clickCalculateButton()
-                             .verifyCalculcatorErrorMessages();
+                             .verifyPostcodeErrorMessages()
+                             .selectOriginPostCode(PostCodeStorage.getRandomPostalCodeFromCountry("CZ"))
+                             .selectDestinationPostCode("590 52")
+                             .clickCalculateButton()
+                             .verifyShipmentError();
 
 
     }

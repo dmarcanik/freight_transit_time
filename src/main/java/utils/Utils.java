@@ -7,6 +7,14 @@ import java.util.stream.Collectors;
 
 public class Utils {
 
+    public static String getTextFromString(String text) {
+        return text.replaceAll("[0-9\\s-]", "");
+    }
+
+    public static String erasePartOfString(String string, String toBeErased) {
+        return string.replace(toBeErased, "");
+    }
+
     public static boolean compareValues(String expected, String actual) {
         return compareValues(expected, actual, new ArrayList<>());
     }
@@ -15,6 +23,7 @@ public class Utils {
         return compareValues(String.valueOf(expected), String.valueOf(actual), new ArrayList<>());
     }
 
+    //Method which could prevent from false failure. Sometimes text change only slightly, but formally is stil the same.
     private static boolean compareValues(String expected, String actual, List<CompareOptions> exceptOptions) {
         if (expected == null) {
             expected = "";
@@ -30,7 +39,7 @@ public class Utils {
         }
         return true;
     }
-
+    //This method applies filters on String. you can specify what not to apply using compareOptions
     private static String formatString(String text, List<CompareOptions> compareOptions) {
         if (compareOptions == null) {
             compareOptions = new ArrayList<>();
@@ -60,6 +69,9 @@ public class Utils {
         }
         if (!compareOptions.contains(CompareOptions.REMOVE_ALL_SPACES)) {
             text = text.replaceAll(" ", "");
+        }
+        if (!compareOptions.contains(CompareOptions.REMOVE_DOUBLE_DOTS)) {
+            text = text.replaceAll(":", "");
         }
         if (!compareOptions.contains(CompareOptions.TO_LOWER_CASE)) {
             text = text.toLowerCase();
@@ -104,6 +116,7 @@ public class Utils {
         REMOVE_DOTS,
         TO_LOWER_CASE,
         CHANGE_COMMAS_TO_DOTS,
+        REMOVE_DOUBLE_DOTS,
     }
 
 }
