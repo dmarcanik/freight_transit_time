@@ -5,9 +5,9 @@ import org.openqa.selenium.support.PageFactory;
 import page_components.BaseComponent;
 
 //Interface for all components which does not change but, can appear everywhere
-public interface BaseStaticComponent extends BaseComponent {
+public class BaseStaticComponent implements BaseComponent {
 
-    default void initialize(WebDriver driver) {
+    void initialize(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 

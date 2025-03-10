@@ -6,7 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page_components.variable_components.Button;
 import page_components.variable_components.DropDown;
-import page_components.variable_components.TextInput;
+import page_components.variable_components.Text;
+import page_components.variable_components.Input;
 
 import java.time.Duration;
 
@@ -21,17 +22,20 @@ public class BasePage {
     }
 
 
-
     protected DropDown dropDown(WebElement dropdownElement) {
         return new DropDown(dropdownElement);
     }
 
-    protected TextInput textInput(WebElement inputElement) {
-        return new TextInput(inputElement);
+    protected Input textInput(WebElement inputElement) {
+        return new Input(inputElement);
     }
 
     protected Button button (WebElement buttonElement){
         return new Button(buttonElement);
+    }
+
+    protected Text text(WebElement textElement){
+        return new Text(textElement);
     }
 
 }

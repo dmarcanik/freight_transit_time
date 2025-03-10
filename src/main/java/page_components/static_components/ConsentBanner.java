@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 //Page component for banner, which can appear everywhere.
-public class ConsentBanner implements BaseStaticComponent {
+public class ConsentBanner extends BaseStaticComponent {
     private final WebDriverWait wait;
 
     @FindBy(id = "onetrust-accept-btn-handler")

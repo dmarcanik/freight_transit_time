@@ -3,29 +3,28 @@ package page_components.variable_components;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class DropDown implements BaseVariableComponent {
+public class DropDown extends BaseVariableComponent {
 
-    private final WebElement dropDown;
 
     public DropDown(WebElement dropdown) {
-        this.dropDown = dropdown;
+        super(dropdown);
     }
 
     public void selectByText(String text) {
-        new Select(dropDown).selectByVisibleText(text);
+        new Select(super.getElement()).selectByVisibleText(text);
     }
 
     public void selectByValue(String value) {
-        new Select(dropDown).selectByValue(value);
+        new Select(super.getElement()).selectByValue(value);
     }
 
     public void selectByIndex(int index) {
-        new Select(dropDown).selectByIndex(index);
+        new Select(super.getElement()).selectByIndex(index);
     }
 
     public String getSelectedOption() {
-        return new Select(dropDown).getFirstSelectedOption()
-                                   .getText();
+        return new Select(super.getElement()).getFirstSelectedOption()
+                                             .getText();
     }
 
 }
