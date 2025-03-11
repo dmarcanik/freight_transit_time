@@ -3,7 +3,6 @@ package page_objects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import page_components.static_components.ConsentBanner;
 import utils.Utils;
@@ -36,7 +35,12 @@ public class FreightCalculatorPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'options-container') and contains(@style, 'display: block')]")
     private WebElement tableContainer;
+    @FindBy(xpath = "//span[strong[text()='Committed']]/following-sibling::p/strong[contains(@class, 'product-box')]")
+    private WebElement committedDeliveryDate;
 
+
+    @FindBy(xpath = "//input[@id='#leadtime-datepicker']")
+    private WebElement calendarInput;
 
 
     // Constructor that passes the driver to BasePage
@@ -45,17 +49,16 @@ public class FreightCalculatorPage extends BasePage {
     }
 
 
-
     // Page actions
 
 
     public FreightCalculatorPage clickCalculateButton() {
-        button(calculateButton).click(wait, driver);
+        button(calculateButton).clickOn();
         return this;
     }
 
     public FreightCalculatorPage waitForProductTableToBeLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(tableContainer));
+        customComponent(tableContainer).waitForElement();
         return this;
     }
 
@@ -70,10 +73,12 @@ public class FreightCalculatorPage extends BasePage {
     }
 
     public FreightCalculatorPage verifyShipmentError() {
-        wait.until(ExpectedConditions.visibilityOf(shipmentError));
+        customComponent(shipmentError).waitForElement();
         String actualErrorMessage = Utils.erasePartOfString(Utils.getTextFromString(shipmentError.getText()), "ID");
         verifyErrorMessage(
-                "Unfortunately the online tool is unable to retrieve data for the specified shipment. Please try again later or contact us for assistance.", actualErrorMessage);
+                "Unfortunately the online tool is unable to retrieve data for the specified shipment. Please try again later or contact us for assistance.",
+                actualErrorMessage
+        );
 
         return this;
     }
@@ -99,6 +104,11 @@ public class FreightCalculatorPage extends BasePage {
 
     public FreightCalculatorPage selectDestinationPostCode(String postCode) {
         textInput(destinationPostcodeInput).typeText(postCode);
+        return this;
+    }
+
+    public FreightCalculatorPage setCalendarDate() {
+        Utils.getFormatedDate(Utils.getTodayCalendar());
         return this;
     }
 

@@ -1,17 +1,19 @@
 package page_components.variable_components;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DropDown extends BaseVariableComponent {
+public class DropDown extends CustomComponent {
 
 
-    public DropDown(WebElement dropdown) {
-        super(dropdown);
+    public DropDown(WebElement element, WebDriverWait wait, WebDriver driver) {
+        super(element, wait, driver);
     }
 
     public void selectByText(String text) {
-        new Select(super.getElement()).selectByVisibleText(text);
+        new Select(getElement()).selectByVisibleText(text);
     }
 
     public void selectByValue(String value) {

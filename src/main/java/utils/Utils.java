@@ -1,11 +1,22 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Utils {
+
+    public static Calendar getTodayCalendar() {
+        return Calendar.getInstance();
+    }
+
+    public static String getFormatedDate(Calendar calendar) {
+        Date date = calendar.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
+    }
+
 
     public static String getTextFromString(String text) {
         return text.replaceAll("[0-9\\s-]", "");

@@ -4,15 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Button extends BaseVariableComponent {
+public class Button extends CustomComponent {
 
 
-    public Button(WebElement element) {
-        super(element);
-    }
-
-    public void click(WebDriverWait wait, WebDriver driver) {
-        clickElement(getElement(), wait, driver);
+    public Button(WebElement element, WebDriverWait wait, WebDriver driver) {
+        super(element, wait, driver);
     }
 
 
