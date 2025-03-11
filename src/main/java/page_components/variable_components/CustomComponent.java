@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page_components.BaseComponent;
 
-//Interface which can serves for all variable element, like buttons, dropdowns, inputs etc.
+//Custom component with all basic functions.
 public class CustomComponent implements BaseComponent {
     private final WebElement element;
     private final WebDriverWait wait;
